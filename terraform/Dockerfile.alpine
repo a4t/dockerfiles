@@ -4,5 +4,6 @@ FROM hashicorp/terraform:${TERRAFORM_VERSION} AS build-env
 FROM alpine:latest
 MAINTAINER Shigure Onishi <s.onishi@kakehashi.life>
 COPY --from=build-env /bin/terraform /bin/terraform
+RUN apk add --update git openssh
 ENTRYPOINT ["/bin/terraform"]
 CMD ["--help"]
